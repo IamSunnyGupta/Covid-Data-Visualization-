@@ -1,5 +1,6 @@
 # Covid-Data-Visualization-
 Covid Data Exploration with SQL &amp; Visualization in Tableau 
+### Data Visualization in Tableau 
 ### Data Analysis Using SQL
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types </br>
 
@@ -111,9 +112,9 @@ Date datetime,
 Population numeric,
 New_vaccinations numeric,
 RollingPeopleVaccinated numeric
-)
+)`
 
-Insert into #PercentPopulationVaccinated
+`Insert into #PercentPopulationVaccinated
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.location, dea.Date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
@@ -123,7 +124,6 @@ Join PortfolioProject..CovidVaccinations vac
 	and dea.date = vac.date
 --where dea.continent is not null 
 --order by 2,3
-
 Select *, (RollingPeopleVaccinated/Population)*100
 From #PercentPopulationVaccinated`
 
